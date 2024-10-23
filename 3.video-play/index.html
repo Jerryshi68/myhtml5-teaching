@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+	<meta charset=utf-8>
+	<title>小小视频播放器</title>
+    <style>
+        #player-box {
+            position: relative;
+        }
+        #player-box div {
+            position: absolute;
+        }
+        #video-face {
+            background: url(images/face.jpg);
+            width: 1024px;
+            height: 576px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        #video-face img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+	<header style="width: 1024px;text-align: center;">
+		<h1>我做的视频播放器</h1>
+	</header>
+    <div id="player-box">
+        <div>
+            <video width="1024" height="576" controls="controls">
+                <source src="videos/two-AI-debates.mp4" type="video/mp4" />
+                您的浏览器不支持HTML5视频标签。
+            </video>
+        </div>
+        <div id="video-face">
+            <img src="images/play-circle-outline.svg"/>
+        </div>
+    </div>
+    <script src="../common-js/zepto.min.js"></script>
+    <script>
+        $(function() {
+            $('#video-face').bind('click', function(e) {
+                $('#player-box video').get(0).play();
+                $('#player-box video').bind('play', function(e) {
+                    $('#video-face').hide();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>斜线表格</title>  
+    <style>
+        body {  
+            font-family: Arial, sans-serif;  
+        }  
+        .diagonal-table {  
+            width: 100%;  
+            border-collapse: collapse;  
+            position: relative;  
+            overflow: hidden;  
+        }  
+        .diagonal-table th, .diagonal-table td {  
+            padding: 10px;  
+            text-align: center;  
+            position: relative;  
+            z-index: 1; /* Ensure cell content is above the diagonal lines */  
+            background-color: #fff; /* Background to cover the lines passing through */  
+        }  
+        .diagonal-table::before, .diagonal-table::after {  
+            content: '';  
+            position: absolute;  
+            top: 0;  
+            left: 0;  
+            width: 100%;  
+            height: 100%;  
+            border-style: solid;  
+            border-color: #ccc;  
+            z-index: 0; /* Ensure lines are below the cell content */  
+            pointer-events: none; /* Allow clicking on table cells */  
+        }
+        .diagonal-table::before {  
+            transform: rotate(45deg);  
+            border-width: 0 0 1px 0; /* Bottom-left to top-right diagonal */  
+            top: -1px; /* Adjust to cover the entire table */  
+            left: -1px;  
+        }
+        .diagonal-table::after {  
+            transform: rotate(-45deg);  
+            border-width: 0 1px 0 0; /* Top-left to bottom-right diagonal */  
+            top: 1px; /* Adjust to cover the entire table */  
+            left: 1px;  
+        }
+        /* Optional: Hide diagonals in headers for better readability */  
+        .diagonal-table thead th {  
+            background-color: #f1f1f1;  
+        }
+        .diagonal-table thead {  
+            position: relative;  
+            z-index: 2; /* Ensure header is above diagonals */  
+        }
+    </style>
+</head>  
+<body>  
+    <table class="diagonal-table">  
+        <thead>  
+            <tr>  
+                <th>Header 1</th>  
+                <th>Header 2</th>  
+                <th>Header 3</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr>  
+                <td>Data 1</td>  
+                <td>Data 2</td>  
+                <td>Data 3</td>  
+            </tr>  
+            <tr>  
+                <td>Data 4</td>  
+                <td>Data 5</td>  
+                <td>Data 6</td>  
+            </tr>  
+            <tr>  
+                <td>Data 7</td>  
+                <td>Data 8</td>  
+                <td>Data 9</td>  
+            </tr>  
+        </tbody>  
+    </table>  
+</body>  
+</html>
