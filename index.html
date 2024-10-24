@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+	<meta charset=utf-8>
+	<title>张小明的作品集</title>
+    <style>
+        /* 默认情况每行显示4个项目 */  
+        @media (min-width: 1500px) {  
+            .portfolio-item {  
+                flex: 0 0 23%; /* 考虑到margin，稍微小于25% */  
+            }  
+        }
+        /* 屏幕宽度小于1500px时，每行显示3个项目 */  
+        @media (max-width: 1499px) and (min-width: 1000px) {  
+            .portfolio-item {  
+                flex: 0 0 31%; /* 考虑到margin，稍微小于33.33% */  
+            }  
+        }
+        /* 屏幕宽度小于1000px时，每行显示2个项目 */  
+        @media (max-width: 999px) and (min-width: 500px) {  
+            .portfolio-item {  
+                flex: 0 0 48%; /* 考虑到margin，稍微小于50% */  
+            }  
+        }
+        /* 屏幕宽度小于500px时，每行显示1个项目 */  
+        @media (max-width: 499px) {  
+            .portfolio-item {  
+                flex: 0 0 96%; /* 考虑到margin，稍微小于100% */  
+            }  
+        }
+        header h1 {
+            text-align: center;
+        }
+        #portfolio {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .portfolio-item {
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .portfolio-item img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>张小明的作品集</h1>
+    </header>
+    <div id="portfolio">
+        <div class="portfolio-item"><a href="1.my-photo/index.html"><img src="1.my-photo.jpg" alt="我的照片"></a></div>
+        <div class="portfolio-item"><a href="2.kechengbiao"><img src="2.kechengbiao.jpg" alt="课程表"></a></div>
+        <div class="portfolio-item"><a href="3.video-play"><img src="3.video-play.jpg" alt="我做的视频播放器"></a></div>
+    </div>
+</body>
+</html>
