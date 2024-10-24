@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单加法计算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #calc-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        header h1 {
+            text-align: center;
+        }
+        .calculator {
+            width: 294px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        #display {
+            box-sizing: border-box;
+            width: 290px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            text-align: right;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button {
+            box-sizing: border-box;
+            display: inline-block;
+            padding: 15px;
+            margin: 1px;
+            width: 90px;
+            font-size: 1.2em;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #d0d0d0;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>简单加法计算器</h1>
+</header>
+<div id="calc-box">
+    <div class="calculator">
+        <div id="display">0</div>
+        <div class="button num">1</div>
+        <div class="button num">2</div>
+        <div class="button num">3</div>
+        <br>
+        <div class="button num">4</div>
+        <div class="button num">5</div>
+        <div class="button num">6</div>
+        <br>
+        <div class="button num">7</div>
+        <div class="button num">8</div>
+        <div class="button num">9</div>
+        <br>
+        <div class="button num">0</div>
+        <div class="button" id="add">+</div>
+        <div class="button" id="calculate">=</div>
+    </div>
+</div>
+<script src="../common-js/zepto.min.js"></script>
+<script>
+    var display = $('#display');
+    var operand1 = '';
+    var operand2 = '';
+    var operator = '';
+
+    $(function() {
+        $('.num').bind('click', function(e) {
+            var number = $(this).text();
+            inputNumber(number);
+        }); 
+        $('#add').bind('click', function(e) {
+            add();
+        });
+        $('#calculate').bind('click', function(e) {
+            calculate();
+        });
+    });
+
+    function inputNumber(number) {
+        if (operator === '') {
+            operand1 += number;
+        } else {
+            operand2 += number;
+        }
+
+        if (operator !== '') {
+            display.text(operand1 + operator + operand2); // 如果按过加号，则显示运算式子
+        } else {
+            display.text(operand1); // 否则只显示第一个数
+        }
+    }
+
+    function add() {
+        if (operand2 !== '') {
+            calculate();
+        }
+        operator = '+';
+        display.text(operand1 + operator);
+    }
+
+    function calculate() {
+        if (operator === '+' && operand2 !== '') {
+            var result = parseInt(operand1) + parseInt(operand2);
+            display.text(result);
+            operand1 = result.toString();
+            operand2 = '';
+            operator = '';
+        }
+    }
+</script>
+</body>
+</html>
